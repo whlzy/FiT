@@ -49,9 +49,4 @@ diffusion:
       abs_pos_embed: null
       adaln_type: lora
       adaln_lora_dim: 576
-      ignore_keys:
-      - x_embedder
-      - bias
-      - LN
-      - final_layer
-      finetune: partial
+      

@@ -48,10 +48,4 @@ diffusion:
       abs_pos_embed: null
       adaln_type: lora
       adaln_lora_dim: 288
-      pretrain_ckpt: workdir/sit/fit_v3/xl_model_v2/fit_xl_p2_256_swiglu_rope_qklayernorm_data2_lognorm_lora4_warmup/checkpoints/checkpoint-2000000/model_1.safetensors
-      ignore_keys:
-      - bias
-      - x_embedder
-      - LN
-      - final_layer
-      finetune: partial
+      
