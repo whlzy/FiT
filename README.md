@@ -4,7 +4,7 @@
 
 <p align="center">
 📃 <a href="https://arxiv.org/pdf/2402.12376.pdf" target="_blank">FiT Paper</a> • 
-📦 <a href="https://huggingface.co/InfImagine/FiT" target="_blank">FiT Checkpoint</a> <br> • 
+📦 <a href="https://huggingface.co/InfImagine/FiT" target="_blank">FiT Checkpoint</a> <br> 
 📃 <a href="https://arxiv.org/pdf/2410.13925" target="_blank">FiTv2 Paper</a> • 
 📦 <a href="https://huggingface.co/InfImagine/FiTv2" target="_blank">FiTv2 Checkpoint</a> <br> 
 </p>
@@ -15,7 +15,7 @@ FiT is a diffusion transformer based model which can generate images at unrestri
 The core features will include:
 * Pre-trained class-conditional FiT-XL-2-16 (2000K) model weight trained on ImageNet ($H\times W \le 256\times256$).
 * Pre-trained class-conditional FiTv2-XL-2-16 (2000K) and FiTv2-3B-2-16 (1000K) model weight trained on ImageNet ($H\times W \le 256\times256$).
-* High-resolution Fine-tuned FiTv2-XL-2-32 (400K) and FiTv2-3B-2-32 (200K) model weitht trained on ImageNet ($H\times W \le 512\times512$).
+* High-resolution Fine-tuned FiTv2-XL-2-32 (400K) and FiTv2-3B-2-32 (200K) model weight trained on ImageNet ($H\times W \le 512\times512$).
 * A pytorch sample code for running pre-trained FiT and FiTv2 models to generate images at unrestricted resolutions and aspect ratios.
 
 Why we need FiT?
