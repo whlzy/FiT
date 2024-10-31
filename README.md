@@ -146,9 +146,6 @@ other metrics.
 
 
 
-## Acknowledgments
-This codebase borrows from <a href="https://github.com/facebookresearch/DiT/tree/main" target="_blank">DiT</a>.
-
 ## BibTeX
 ```bibtex
 @article{Lu2024FiT,
