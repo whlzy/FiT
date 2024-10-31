@@ -1,0 +1,14 @@
+diffusers>=0.30.1 #git+https://github.com/huggingface/diffusers.git@main#egg=diffusers is suggested
+transformers>=4.44.2  # The development team is working on version 4.44.2
+accelerate>=0.33.0 #git+https://github.com/huggingface/accelerate.git@main#egg=accelerate is suggested
+sentencepiece>=0.2.0 # T5 used
+numpy==1.26.0
+streamlit>=1.38.0 # For streamlit web demo
+imageio==2.34.2 # For diffusers inference export video
+imageio-ffmpeg==0.5.1 # For diffusers inference export video
+openai>=1.42.0 # For prompt refiner
+moviepy==1.0.3 # For export video
+pillow==9.5.0
+timm==0.6.13
+safetensors==0.4.5
+einops
