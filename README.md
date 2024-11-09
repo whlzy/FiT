@@ -4,7 +4,7 @@
 
 <p align="center">
 📃 <a href="https://arxiv.org/pdf/2402.12376.pdf" target="_blank">FiT Paper</a> • 
-📦 <a href="https://huggingface.co/InfImagine/FiT" target="_blank">FiT Checkpoint</a> <br> • 
+📦 <a href="https://huggingface.co/InfImagine/FiT" target="_blank">FiT Checkpoint</a> <br> 
 📃 <a href="https://arxiv.org/pdf/2410.13925" target="_blank">FiTv2 Paper</a> • 
 📦 <a href="https://huggingface.co/InfImagine/FiTv2" target="_blank">FiTv2 Checkpoint</a> <br> 
 </p>
