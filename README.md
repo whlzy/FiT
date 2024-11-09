@@ -4,7 +4,7 @@
 
 <p align="center">
 📃 <a href="https://arxiv.org/pdf/2402.12376.pdf" target="_blank">FiT Paper</a> • 
-📦 <a href="https://huggingface.co/InfImagine/FiT" target="_blank">FiT Checkpoint</a> <br> 
+📦 <a href="https://huggingface.co/InfImagine/FiT" target="_blank">FiT Checkpoint</a> <br> • 
 📃 <a href="https://arxiv.org/pdf/2410.13925" target="_blank">FiTv2 Paper</a> • 
 📦 <a href="https://huggingface.co/InfImagine/FiTv2" target="_blank">FiTv2 Checkpoint</a> <br> 
 </p>
@@ -144,6 +144,84 @@ The sampling generates a folder of samples as well as a `.npz` file which can be
 evaluation suite](https://github.com/openai/guided-diffusion/tree/main/evaluations) to compute FID, Inception Score and
 other metrics. 
 
+
+
+## Flexible Imagenet Latent Datasets
+
+We use [SD-VAE-FT-EMA](https://huggingface.co/stabilityai/sd-vae-ft-ema) to encode an image into the latent codes.
+
+Accordingly to our flexible training pipeline, we can deal with images with arbitrary resolutions and aspect ratios.
+So we preprocess the ImageNet1k dataset according to the original height and width of an image.
+Conventionally, we set patch size $p$ to $2$ and the downsampling scale $s$ of the VAE encoder is $8$, 
+so an image with $H=256$ and $W=256$ will lead to $\frac{H\times W}{p^2\times s^2} = 256$ tokens. 
+
+For our pre-training, we set the maximum token length to $256$, which corresponds image resolution size $S=H=W=256$. 
+For the high-resolution fine-tuning, the token length is $1024$, which corresponds image resolution size $S=H=W=512$. 
+Given an input image $I\in \mathbb{R}^{3\times H \times W}$, and target resolution size $S=256/512$, the preprocessing is:
+```
+If H > S and W > S:
+  img_resize = Resize(I)
+  latent_resize = VAE_Encode(img_resize)
+  save(latent_resize)
+  img_crop = CenterCrop(Resize(I))
+  latent_crop = VAE_Encode(img_crop)
+  save(latent_resize)
+else:
+  img_resize = Resize(I)
+  latent_resize = VAE_Encode(img_resize)
+  save(latent_resize)
+```
+
+### Dataset for Pretraining
+
+All the image latent codes with maximum token length $256$ can be downloaded from [here](https://huggingface.co/datasets/InfImagine/imagenet1k_features_256_sd_vae_ft_ema/tree/main).
+
+```
+bash tools/download_in1k_latents_256.sh
+```
+
+
+
+### Dataset for High-resolution Fine-tuning
+All the image latent codes with maximum token length $1024$ can be downloaded from [here](https://huggingface.co/datasets/InfImagine/imagenet_features_1024_sd_vae_ft_ema).
+
+
+```
+bash tools/download_in1k_latents_1024.sh
+```
+
+### Dataset Architecture
+
+- imagenet1k_latents_256_sd_vae_ft_ema
+  - less_than_16
+    - xxxxxxx.safetensors
+    - xxxxxxx.safetensors
+  - from_16_to_256
+    - xxxxxxx.safetensors
+    - xxxxxxx.safetensors
+  - greater_than_256_crop
+    - xxxxxxx.safetensors
+    - xxxxxxx.safetensors
+  - greater_than_256_resize
+    - xxxxxxx.safetensors
+    - xxxxxxx.safetensors
+- imagenet1k_latents_1024_sd_vae_ft_ema
+  - less_than_16
+    - xxxxxxx.safetensors
+    - xxxxxxx.safetensors
+  - from_16_to_1024
+    - xxxxxxx.safetensors
+    - xxxxxxx.safetensors
+  - greater_than_1024_crop
+    - xxxxxxx.safetensors
+    - xxxxxxx.safetensors
+  - greater_than_1024_resize
+    - xxxxxxx.safetensors
+    - xxxxxxx.safetensors
+
+## Train
+
+Coming soon!
 
 
 ## BibTeX
