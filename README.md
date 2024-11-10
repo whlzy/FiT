@@ -220,8 +220,23 @@ bash tools/download_in1k_latents_1024.sh
     - xxxxxxx.safetensors
 
 ## Train
+You need to determine the number of node and GPU for your training.
 
-Coming soon!
+Train FiT and FiTv2 models:
+```
+bash tools/train_fit_xl.sh
+
+bash tools/train_fitv2_xl.sh
+
+bash tools/train_fitv2_3B.sh
+```
+
+High-resolution Fine-tuning:
+```
+bash tools/train_fitv2_hr_xl.sh
+
+bash tools/train_fitv2_hr_3B.sh
+```
 
 
 ## BibTeX

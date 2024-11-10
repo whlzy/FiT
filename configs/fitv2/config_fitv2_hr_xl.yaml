@@ -48,4 +48,46 @@ diffusion:
       abs_pos_embed: null
       adaln_type: lora
       adaln_lora_dim: 288
-      
+      pretrain_ckpt: checkpoints/fitv2_xl.safetensors
+      ignore_keys: ['x_embedder', 'bias', 'LN', 'final_layer']
+      finetune: partial
+
+data:
+  target: fit.data.in1k_latent_dataset.INLatentLoader
+  params:
+    train:
+      data_path: datasets/imagenet1k_latents_1024_sd_vae_ft_ema
+      target_len: 1024
+      random: 'random'
+      loader:
+        batch_size: 16
+        num_workers: 2
+        shuffle: True
+
+
+accelerate:
+  # others
+  gradient_accumulation_steps: 1
+  mixed_precision: 'bf16'
+  # training step config
+  num_train_epochs: 
+  max_train_steps: 400000
+  # optimizer config
+  learning_rate: 1.0e-4
+  learning_rate_base_batch_size: 256
+  max_grad_norm: 1.0
+  optimizer:
+    target: torch.optim.AdamW
+    params:
+      betas: ${tuple:0.9, 0.999}
+      weight_decay: 0 #1.0e-2
+      eps: 1.0e-8
+  lr_scheduler: constant
+  lr_warmup_steps: 0
+  # checkpoint config
+  logger: wandb
+  checkpointing_epochs: False
+  checkpointing_steps: 4000
+  checkpointing_steps_list: [40000, 80000, 100000, 200000]
+  checkpoints_total_limit: 2
+  logging_steps: 1000
